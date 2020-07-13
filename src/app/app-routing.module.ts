@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PhotoDetailComponent } from './photo-detail/photo-detail.component';
+import { PhotosComponent } from './photos/photos.component';
 
-
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'photos', component: PhotosComponent },
+  { path: 'photos/:id', component: PhotoDetailComponent },
+  { path: '', redirectTo: '/photos', pathMatch: 'full' },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

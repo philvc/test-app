@@ -1,0 +1,8 @@
+<h3>Liste de photos</h3>
+
+
+<div *ngIf="urls">
+    <p *ngFor="let url of urls">{{url}}
+        <img class='image-item' src={{url}} alt='local image' />
+    </p>
+</div>
