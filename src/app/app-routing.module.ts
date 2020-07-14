@@ -5,7 +5,7 @@ import { PhotosComponent } from './photos/photos.component';
 
 const routes: Routes = [
   { path: 'photos', component: PhotosComponent },
-  { path: 'detail/:id', component: PhotoDetailComponent },
+  { path: 'photos/:id', component: PhotoDetailComponent },
   { path: '', redirectTo: '/photos', pathMatch: 'full' },
 ];
 

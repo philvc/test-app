@@ -1,4 +1,4 @@
 <h3>Photo Detail</h3>
-<div>
-    {{url}}
+<div *ngIf='url'>
+    <img class='image' src={{url}} alt='uploaded image' />
 </div>

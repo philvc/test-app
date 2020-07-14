@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -12,7 +13,10 @@ export class PhotoUploadComponent implements OnInit {
 
   uploadedFiles: Array<File>;
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +36,7 @@ export class PhotoUploadComponent implements OnInit {
     this.http.post('http://localhost:3000/api/upload', formData)
       .subscribe((response) => {
         console.log('response received is ', response);
+        this.router.navigate(['0'], { relativeTo: this.route })
       })
   }
 
