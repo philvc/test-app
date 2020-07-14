@@ -15,7 +15,6 @@ export class PhotoService {
   ) { }
 
   getImagesUrl(): Observable<any> {
-    console.log('get image url service')
     const imagesUrl = 'http://localhost:3000/api/images'
     return this.http.get<any>(imagesUrl)
   }

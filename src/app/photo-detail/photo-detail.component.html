@@ -1,4 +1,6 @@
 <h3>Photo Detail</h3>
 <div *ngIf='url'>
-    <img class='image' src={{url}} alt='uploaded image' />
+    <img #img class='image' src={{url}} alt='uploaded image' />
+    <button (click)="getPictureDetails()">show picture details</button>
+    <div *ngIf='output'>Date et heure: {{output}}</div>
 </div>

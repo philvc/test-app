@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 // service
 import { PhotoService } from '../photo.service';
+
+declare var EXIF: any;
+
 
 @Component({
   selector: 'app-photo-detail',
@@ -12,8 +15,15 @@ import { PhotoService } from '../photo.service';
 })
 export class PhotoDetailComponent implements OnInit {
 
+  @ViewChildren('img') imgEl: QueryList<any>;
+
+  private imageRef: ElementRef
+
   index;
   url;
+
+  output;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +34,27 @@ export class PhotoDetailComponent implements OnInit {
   ngOnInit(): void {
 
     this.getPhotoByIndex()
+  }
+
+  ngAfterViewInit() {
+    this.imgEl.changes.subscribe(comps => {
+      this.imageRef = comps.first
+      this.getExif(comps.first)
+    })
+  }
+
+  private getExif(element) {
+    let allMetaData: any;
+    EXIF.getData(<HTMLImageElement>element.nativeElement, function () {
+      // `this` is provided image, check with `console.log(this)`
+
+      allMetaData = EXIF.getAllTags(this);
+    });
+    this.output = allMetaData.DateTime || "no details"
+  }
+
+  getPictureDetails() {
+    this.getExif(this.imageRef)
   }
 
   getPhotoByIndex() {
