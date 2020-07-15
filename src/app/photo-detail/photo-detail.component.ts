@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 // service
 import { PhotoService } from '../photo.service';
@@ -34,7 +33,6 @@ export class PhotoDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
     private photoService: PhotoService,
   ) { }
 
@@ -57,36 +55,33 @@ export class PhotoDetailComponent implements OnInit {
 
       allMetaData = EXIF.getAllTags(this);
     });
-    console.log('allMetaData', allMetaData)
-    console.log('GSPLAT index 0', allMetaData.GPSLatitude[0])
-    const latObj = allMetaData.GPSLatitude[2]
-    console.log(latObj.valueOf())
 
+    if (allMetaData.GPSLatitude) {
+      const latitudeDD = this.convertDMSToDD(
+        allMetaData.GPSLatitude[0].valueOf(),
+        allMetaData.GPSLatitude[1].valueOf(),
+        allMetaData.GPSLatitude[2].valueOf(),
+        allMetaData.GPSLatitudeRef
+      )
 
-    const latitudeDD = this.convertDMSToDD(
-      allMetaData.GPSLatitude[0].valueOf(),
-      allMetaData.GPSLatitude[1].valueOf(),
-      allMetaData.GPSLatitude[2].valueOf(),
-      allMetaData.GPSLatitudeRef
-    )
+      const longitudeDD = this.convertDMSToDD(
+        allMetaData.GPSLongitude[0].valueOf(),
+        allMetaData.GPSLongitude[1].valueOf(),
+        allMetaData.GPSLongitude[2].valueOf(),
+        allMetaData.GPSLongitudeRef
+      )
 
-    const longitudeDD = this.convertDMSToDD(
-      allMetaData.GPSLongitude[0].valueOf(),
-      allMetaData.GPSLongitude[1].valueOf(),
-      allMetaData.GPSLongitude[2].valueOf(),
-      allMetaData.GPSLongitudeRef
-    )
-
-    console.log('latDD & longDD', latitudeDD, longitudeDD)
-    this.coordonates.lat = latitudeDD;
-    this.coordonates.lng = longitudeDD;
+      console.log('latDD & longDD', latitudeDD, longitudeDD)
+      this.coordonates.lat = latitudeDD;
+      this.coordonates.lng = longitudeDD;
+    }
 
     this.output = allMetaData.DateTime || "no details"
   }
 
 
   private convertDMSToDD(degrees, minutes, seconds, direction) {
-    console.log('dd inputs', degrees, minutes, seconds, direction)
+
     var dd = degrees + minutes / 60 + seconds / (60 * 60);
     if (direction == "S" || direction == "W") {
       dd = dd * -1;

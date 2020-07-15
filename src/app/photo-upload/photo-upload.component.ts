@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PhotoUploadComponent implements OnInit {
 
   uploadedFiles: Array<File>;
+  alert: String;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -23,12 +24,17 @@ export class PhotoUploadComponent implements OnInit {
 
   }
 
-  fileChange(element) {
-  }
-
   upload(element) {
+
+    this.alert = undefined;
     this.uploadedFiles = element.target.files;
+
+    if (!this.uploadedFiles[0].type.includes('image')) {
+      return this.alert = 'Ajoutez un fichier image png ou jpeg'
+    }
+
     let formData = new FormData();
+
     for (let i = 0; i < this.uploadedFiles.length; i++) {
       formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
     }

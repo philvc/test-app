@@ -10,5 +10,8 @@
     <div>
         {{coordonates | json}}
     </div>
-    <google-map [center]="coordonates"></google-map>
+    <google-map [center]="coordonates">
+        <map-marker [position]="coordonates">
+        </map-marker>
+    </google-map>
 </div>
