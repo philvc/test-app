@@ -1,5 +1,25 @@
 # TestApp
 
+Petite application de partage de photos en Angular 9.1.11.
+
+## Installez l'app en local
+
+Sur le terminal, déplacez vous dans le dossier où vous aller importer le dossier de l'application.
+
+Sur le terminal, clonez le repo `git clone git@github.com:philvc/test-app.git`.
+
+Ensuite pour installer les différents packages, deplacez vous dans le dossier test-app et rentez la commande `npm i` pour installer les différents packages.
+
+L'application est installée sur votre ordinateur.
+
+## Lancez l'application
+
+Sur le terminal, toujours dans le dossier test-app, entrez `ng serve`.
+
+Ouvrez une nouvelle fenêtre de navigation à l'adresse `http://localhost:4200/`.
+
+
+## AUTO GENERATED ENGLISH README
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.11.
 
 ## Development server
