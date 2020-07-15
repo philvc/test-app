@@ -8,7 +8,7 @@ Sur le terminal, déplacez vous dans le dossier où vous aller importer le dossi
 
 Sur le terminal, clonez le repo `git clone git@github.com:philvc/test-app.git`.
 
-Ensuite pour installer les différents packages, deplacez vous dans le dossier test-app et rentrez la commande `npm i` pour installer les différents packages.
+Ensuite pour installer les différents packages, deplacez vous dans le dossier test-app depuis le terminal `cd test-app` et rentrez la commande `npm i` pour installer les différents packages.
 
 L'application est installée sur votre ordinateur.
 
