@@ -1,9 +1,11 @@
 <app-photo-upload></app-photo-upload>
-<h3>Liste de photos</h3>
-<div *ngIf="urls">
+<h3 class="photos-title">Liste de photos</h3>
+<div *ngIf="urls" class='photos-list-container'>
     <p *ngFor="let url of urls, let index = index">
         <a routerLink='/photos/{{index}}'>
-            <img class='image-item' src={{url}} alt='local image' />
+            <div class="photos-list-image-container">
+                <img class='photos-list-image-content' src={{url}} alt='local image' />
+            </div>
         </a>
     </p>
 </div>

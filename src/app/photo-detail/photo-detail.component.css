@@ -1,3 +1,20 @@
-.image{
-    max-width: 200px;
+
+.photo-detail-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-detail-image-container{
+    margin: 20px;
+    width: 500px;
+}
+            
+.photo-detail-image-content{
+    width: 100%;
+    height: auto;
+}
+
+.photo-detail-time{
+    margin: 20px;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { format } from 'date-fns'
 
 // service
 import { PhotoService } from '../photo.service';
@@ -28,7 +29,7 @@ export class PhotoDetailComponent implements OnInit {
     lat: null,
     lng: null,
   };
-  output;
+  dateAndTime;
 
 
   constructor(
@@ -70,13 +71,24 @@ export class PhotoDetailComponent implements OnInit {
         allMetaData.GPSLongitude[2].valueOf(),
         allMetaData.GPSLongitudeRef
       )
-
-      console.log('latDD & longDD', latitudeDD, longitudeDD)
       this.coordonates.lat = latitudeDD;
       this.coordonates.lng = longitudeDD;
     }
 
-    this.output = allMetaData.DateTime || "no details"
+    if (allMetaData.DateTime) {
+
+      const date = allMetaData.DateTime.split(' ')[0].split(':')
+      const hour = allMetaData.DateTime.split(' ')[1]
+      const formattedDate = format(new Date(date[0], date[1] - 1, date[2]), 'MM/dd/yyyy')
+
+      this.dateAndTime = `Date: ${formattedDate} Heure: ${hour}`
+
+    } else {
+
+      this.dateAndTime = "no details"
+
+    }
+
   }
 
 

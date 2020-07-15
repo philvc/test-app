@@ -1,3 +1,19 @@
-.image-item{
-    max-width: 200px;
+
+.photos-list-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.photos-title{
+    text-align: center;
+}
+
+.photos-list-image-container{
+    width: 200px;
+}
+
+.photos-list-image-content{
+    width: 100%;
+    height: auto;
 }

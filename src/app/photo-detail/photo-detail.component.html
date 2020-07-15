@@ -1,17 +1,15 @@
-<h3>Photo Detail</h3>
-<div *ngIf='url'>
-    <img #img class='image' src={{url}} alt='uploaded image' />
-</div>
-<div>
-    <button (click)="getPictureDetails()">Voir détails de la photo</button>
-</div>
-<div *ngIf='output'>{{output}}</div>
-<div *ngIf='coordonates.lat'>
-    <div>
-        {{coordonates | json}}
+<div class='photo-detail-container'>
+    <div *ngIf='url' class="photo-detail-image-container">
+        <img #img class='photo-detail-image-content' src={{url}} alt='uploaded image' />
     </div>
-    <google-map [center]="coordonates">
-        <map-marker [position]="coordonates">
-        </map-marker>
-    </google-map>
+    <div>
+        <button (click)="getPictureDetails()">Voir détails de la photo</button>
+    </div>
+    <div class='photo-detail-time' *ngIf='dateAndTime'>{{dateAndTime}}</div>
+    <div *ngIf='coordonates.lat'>
+        <google-map [center]="coordonates">
+            <map-marker [position]="coordonates">
+            </map-marker>
+        </google-map>
+    </div>
 </div>

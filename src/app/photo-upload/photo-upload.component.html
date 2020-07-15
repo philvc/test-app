@@ -1,8 +1,8 @@
-<div>
+<div class="photo-upload-container">
     <form action="/api/upload" method="post" enctype="multipart/form-data">
         <label class='photo-upload-button' for='files'>Ajouter une image</label>
-        <input (change)="upload($event)" style="visibility:hidden;" id='files' type="file" class="custom-file-input"
-            aria-describedby="inputGroupFileAddon01">
+        <input (change)="upload($event)" style="visibility:hidden;width: 0;" id='files' type="file"
+            class="custom-file-input" aria-describedby="inputGroupFileAddon01">
     </form>
     <div *ngIf='alert'>{{alert}}</div>
 </div>
