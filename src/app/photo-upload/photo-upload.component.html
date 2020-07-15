@@ -1,7 +1,7 @@
 <div>
     <form action="/api/upload" method="post" enctype="multipart/form-data">
-        <input (change)="fileChange($event)" type="file" class="custom-file-input" id="inputGroupFile01"
+        <label class='photo-upload-button' for='files'>Ajouter une image</label>
+        <input (change)="upload($event)" style="visibility:hidden;" id='files' type="file" class="custom-file-input"
             aria-describedby="inputGroupFileAddon01">
     </form>
-    <button (click)="upload()">Upload</button>
 </div>

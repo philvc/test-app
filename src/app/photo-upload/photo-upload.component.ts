@@ -24,10 +24,10 @@ export class PhotoUploadComponent implements OnInit {
   }
 
   fileChange(element) {
-    this.uploadedFiles = element.target.files;
   }
 
-  upload() {
+  upload(element) {
+    this.uploadedFiles = element.target.files;
     let formData = new FormData();
     for (let i = 0; i < this.uploadedFiles.length; i++) {
       formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);

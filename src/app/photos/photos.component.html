@@ -1,6 +1,5 @@
-<h3>Liste de photos</h3>
-
 <app-photo-upload></app-photo-upload>
+<h3>Liste de photos</h3>
 <div *ngIf="urls">
     <p *ngFor="let url of urls, let index = index">
         <a routerLink='/photos/{{index}}'>

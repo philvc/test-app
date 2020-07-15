@@ -7,6 +7,10 @@ import { PhotoService } from '../photo.service';
 
 declare var EXIF: any;
 
+interface Coordonates {
+  lat: number,
+  lng: number,
+}
 
 @Component({
   selector: 'app-photo-detail',
@@ -21,7 +25,10 @@ export class PhotoDetailComponent implements OnInit {
 
   index;
   url;
-
+  coordonates: Coordonates = {
+    lat: null,
+    lng: null,
+  };
   output;
 
 
@@ -50,7 +57,41 @@ export class PhotoDetailComponent implements OnInit {
 
       allMetaData = EXIF.getAllTags(this);
     });
+    console.log('allMetaData', allMetaData)
+    console.log('GSPLAT index 0', allMetaData.GPSLatitude[0])
+    const latObj = allMetaData.GPSLatitude[2]
+    console.log(latObj.valueOf())
+
+
+    const latitudeDD = this.convertDMSToDD(
+      allMetaData.GPSLatitude[0].valueOf(),
+      allMetaData.GPSLatitude[1].valueOf(),
+      allMetaData.GPSLatitude[2].valueOf(),
+      allMetaData.GPSLatitudeRef
+    )
+
+    const longitudeDD = this.convertDMSToDD(
+      allMetaData.GPSLongitude[0].valueOf(),
+      allMetaData.GPSLongitude[1].valueOf(),
+      allMetaData.GPSLongitude[2].valueOf(),
+      allMetaData.GPSLongitudeRef
+    )
+
+    console.log('latDD & longDD', latitudeDD, longitudeDD)
+    this.coordonates.lat = latitudeDD;
+    this.coordonates.lng = longitudeDD;
+
     this.output = allMetaData.DateTime || "no details"
+  }
+
+
+  private convertDMSToDD(degrees, minutes, seconds, direction) {
+    console.log('dd inputs', degrees, minutes, seconds, direction)
+    var dd = degrees + minutes / 60 + seconds / (60 * 60);
+    if (direction == "S" || direction == "W") {
+      dd = dd * -1;
+    } // Don't do anything for N or E
+    return dd;
   }
 
   getPictureDetails() {
