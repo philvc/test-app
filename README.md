@@ -8,7 +8,7 @@ Sur le terminal, déplacez vous dans le dossier où vous aller importer le dossi
 
 Sur le terminal, clonez le repo `git clone git@github.com:philvc/test-app.git`.
 
-Ensuite pour installer les différents packages, deplacez vous dans le dossier test-app et rentez la commande `npm i` pour installer les différents packages.
+Ensuite pour installer les différents packages, deplacez vous dans le dossier test-app et rentrez la commande `npm i` pour installer les différents packages.
 
 L'application est installée sur votre ordinateur.
 
@@ -17,7 +17,6 @@ L'application est installée sur votre ordinateur.
 Sur le terminal, toujours dans le dossier test-app, entrez `ng serve`.
 
 Ouvrez une nouvelle fenêtre de navigation à l'adresse `http://localhost:4200/`.
-
 
 ## AUTO GENERATED ENGLISH README
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.11.
